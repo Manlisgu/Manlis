@@ -11,7 +11,7 @@ from chatgpt_utils import get_chat_response
 
 import base64
 from wordfreq_utils import generate_wordcloud
-import matplotlib.pyplot as plt # 图像展示库，以便在notebook中显示图片
+import matplotlib.pyplot as plt              # 图像展示库，以便在notebook中显示图片
 
 
 # 页面配置
@@ -22,9 +22,7 @@ st.title("AutoDataAnalyzer - AI大数据分析与可视化")
 
 # 侧边栏导航
 st.sidebar.title("导航")
-app_mode = st.sidebar.selectbox("选择页面", ["AI车辆性能大数据分析", "AI智能CSV数据分析工具", "AI智能PDF问答工具", "AI智能对话问答工具", "重点议题管理"
-    #, "问题管理", "报告生成"
-                                             ])
+app_mode = st.sidebar.selectbox("选择页面", ["AI车辆性能大数据分析", "AI智能CSV数据分析工具", "AI智能PDF问答工具", "AI智能对话问答工具", "重点议题管理"])
 
 def sidebar_bg(side_bg):
     side_bg_ext = 'png'
@@ -59,15 +57,15 @@ background_bg('./pics/background.jpg')
 
 with st.sidebar:
     openai_api_model = st.text_input("请输入ChatAI Model：", type="password")
-    st.markdown("[获取OpenAI Model: gpt-3.5-turbo(默认，需要魔法)]()")
+    # st.markdown("[获取OpenAI Model: gpt-3.5-turbo(默认，需要魔法)]()")
     st.markdown("[查阅Qwen Model: qwen-plus(默认)](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-thousand-questions-metering-and-billing?spm=a2c4g.11186623.help-menu-610100.d_3_5.72785120xkOrE4&scm=20140722.H_2399482._.OR_help-T_cn-DAS-zh-V_1)")
     #st.markdown("[默认kiMi Model: moonshot-v1-8k(默认)](https://www.volcengine.com/docs/82379/1099320)")
-    st.markdown("[默认doubao Model: doubao-pro-32k(默认)](https://www.volcengine.com/docs/82379/1099320)")
+    # st.markdown("[默认doubao Model: doubao-pro-32k(默认)](https://www.volcengine.com/docs/82379/1099320)")
     openai_api_key = st.text_input("请输入ChatAI API密钥：", type="password")
-    st.markdown("[获取OpenAI API key(需要魔法)](https://platform.openai.com/account/api-keys)")
+    # st.markdown("[获取OpenAI API key(需要魔法)](https://platform.openai.com/account/api-keys)")
     st.markdown("[获取Qwen API key](https://bailian.console.aliyun.com/?apiKey=1#/api-key)")
     #st.markdown("[获取kiMi API key](https://platform.moonshot.cn/console/api-keys)")
-    st.markdown("[获取doubao API key](https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey?apikey=%7B%7D&projectName=undefined)")
+    # st.markdown("[获取doubao API key](https://console.volcengine.com/ark/region:ark+cn-beijing/apiKey?apikey=%7B%7D&projectName=undefined)")
 
 def csv_main():
     st.header("💡 AI智能CSV数据分析工具")

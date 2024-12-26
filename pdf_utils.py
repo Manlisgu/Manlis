@@ -5,8 +5,6 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain_community.chat_models.tongyi import ChatTongyi
 from langchain.embeddings import DashScopeEmbeddings
-# from langchain_community.chat_models.volcengine_maas import VolcEngineMaasChat
-# from langchain_community.embeddings import VolcanoEmbeddings
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -14,8 +12,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 def qa_agent(openai_api_model, openai_api_key, memory, uploaded_file, question):
     if "qwen" in openai_api_model:
         model = ChatTongyi(model=openai_api_model, dashscope_api_key=openai_api_key)
-    # elif "ep" in openai_api_model:
-    #    model = VolcEngineMaasChat(model=openai_api_model, api_key=openai_api_key)
     else:
         model = ChatOpenAI(model=openai_api_model, openai_api_key=openai_api_key)
 
@@ -33,8 +29,6 @@ def qa_agent(openai_api_model, openai_api_key, memory, uploaded_file, question):
     texts = text_splitter.split_documents(docs)
     if "qwen" in openai_api_model:
         embeddings_model = DashScopeEmbeddings(model="text-embedding-v1", dashscope_api_key=openai_api_key)
-    # elif "ep" in openai_api_model:
-    #    embeddings_model = VolcanoEmbeddings(model="doubao-embedding-text-240715", api_key=openai_api_key)
     else:
         embeddings_model = OpenAIEmbeddings()
 
