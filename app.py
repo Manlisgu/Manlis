@@ -2,14 +2,13 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 import pygwalker as pyg
-from models.database import init_db, get_session, Issue
+from models.database import init_db, Issue
 from sqlalchemy.orm import sessionmaker
 
 from langchain.memory import ConversationBufferMemory
 from csv_utils import dataframe_agent
 from csv_classify_utils import classify_agent
 from pdf_utils import qa_agent
-from issues_download_utils import upload_csv_to_url
 from chatgpt_utils import get_chat_response
 
 import base64
