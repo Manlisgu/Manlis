@@ -2,8 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 import pygwalker as pyg
-# from models.database import init_db, Issue
-from sqlalchemy.orm import sessionmaker
 
 from langchain.memory import ConversationBufferMemory
 from csv_utils import dataframe_agent
@@ -15,11 +13,6 @@ import base64
 from wordfreq_utils import generate_wordcloud
 import matplotlib.pyplot as plt # 图像展示库，以便在notebook中显示图片
 
-
-# 初始化数据库
-# engine = init_db()
-# Session = sessionmaker(bind=engine)
-# session = Session()
 
 # 页面配置
 st.set_page_config(page_title="AutoDataAnalyzer", layout="wide")
@@ -237,88 +230,6 @@ def analyze_performance():
             except Exception as e:
                 st.error(f"加载文件 {uploaded_file.name} 失败：{e}")
 
-'''
-def manage_issues():
-    st.header("📝‍ 问题管理")
-    # 问题列表
-    st.subheader("现有问题")
-    issues = session.query(Issue).order_by(Issue.created_at.desc()).all()
-    if issues:
-        issue_data = [{
-            "ID": issue.id,
-            "标题": issue.title,
-            "描述": issue.description,
-            "优先级": issue.priority,
-            "状态": issue.status,
-            "创建时间": issue.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-            "更新时间": issue.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
-        } for issue in issues]
-        df_issues = pd.DataFrame(issue_data)
-        st.dataframe(df_issues)
-    else:
-        st.info("暂无问题记录。")
-
-    # 创建新问题
-    st.subheader("创建新问题")
-    with st.form("issue_form"):
-        title = st.text_input("标题", max_chars=255)
-        description = st.text_area("描述")
-        priority = st.selectbox("优先级", ["Low", "Medium", "High"])
-        submit = st.form_submit_button("提交")
-        if submit:
-            if title:
-                new_issue = Issue(title=title, description=description, priority=priority)
-                session.add(new_issue)
-                session.commit()
-                st.success("问题创建成功！")
-                st.experimental_rerun()
-            else:
-                st.error("标题为必填项。")
-
-    # 更新问题状态
-    st.subheader("更新问题状态")
-    with st.form("update_status_form"):
-        issue_id = st.number_input("问题ID", min_value=1, step=1)
-        new_status = st.selectbox("新状态", ["Open", "In Progress", "Resolved", "Closed"])
-        update_submit = st.form_submit_button("更新状态")
-        if update_submit:
-            issue = session.query(Issue).filter(Issue.id == issue_id).first()
-            if issue:
-                issue.status = new_status
-                session.commit()
-                st.success("问题状态更新成功！")
-                st.experimental_rerun()
-            else:
-                st.error("未找到对应的问题ID。")
-
-
-def generate_reports():
-    st.header("🖨 报告生成")
-    st.write("根据分析结果和问题管理情况生成报告。")
-    # 示例：生成问题总结
-    st.subheader("问题总结")
-    issues = session.query(Issue).all()
-    if issues:
-        issue_data = [{
-            "ID": issue.id,
-            "标题": issue.title,
-            "优先级": issue.priority,
-            "状态": issue.status,
-            "创建时间": issue.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-        } for issue in issues]
-        df_issues = pd.DataFrame(issue_data)
-        st.dataframe(df_issues)
-        # 生成下载链接
-        csv = df_issues.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="下载问题总结为CSV",
-            data=csv,
-            file_name='issue_summary.csv',
-            mime='text/csv',
-        )
-    else:
-        st.info("暂无问题记录。")
-'''
 
 def manage_keyissues():
     st.header("📝‍ 重点议题管理平台")
@@ -351,7 +262,3 @@ elif app_mode == "AI智能对话问答工具":
     chatgpt_main()
 elif app_mode == "重点议题管理":
     manage_keyissues()
-# elif app_mode == "问题管理":
-#    manage_issues()
-# elif app_mode == "报告生成":
-#    generate_reports()
