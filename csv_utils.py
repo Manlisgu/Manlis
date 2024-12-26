@@ -2,8 +2,8 @@ import json
 from langchain_openai import ChatOpenAI
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain_community.chat_models.tongyi import ChatTongyi
-from langchain_community.chat_models.moonshot import MoonshotChat
-from langchain_community.chat_models.volcengine_maas import VolcEngineMaasChat
+# from langchain_community.chat_models.moonshot import MoonshotChat
+# from langchain_community.chat_models.volcengine_maas import VolcEngineMaasChat
 
 PROMPT_TEMPLATE = """
 你是一位数据分析助手，你的回应内容取决于用户的请求内容。
@@ -36,10 +36,10 @@ PROMPT_TEMPLATE = """
 def dataframe_agent(openai_api_model, openai_api_key, df, query):
     if "qwen" in openai_api_model:
         model = ChatTongyi(model=openai_api_model, dashscope_api_key=openai_api_key, temperature=0)
-    elif "moonshot" in openai_api_model:
-        model = MoonshotChat(model=openai_api_model, moonshot_api_key=openai_api_key, temperature=0)
-    elif "ep" in openai_api_model:
-        model = VolcEngineMaasChat(model=openai_api_model, volc_engine_maas_sk=openai_api_key,temperature=0)
+    # elif "moonshot" in openai_api_model:
+    #    model = MoonshotChat(model=openai_api_model, moonshot_api_key=openai_api_key, temperature=0)
+    # elif "ep" in openai_api_model:
+    #    model = VolcEngineMaasChat(model=openai_api_model, volc_engine_maas_sk=openai_api_key,temperature=0)
     else:
         model = ChatOpenAI(model=openai_api_model, openai_api_key=openai_api_key, temperature=0)
 
