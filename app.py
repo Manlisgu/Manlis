@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
 import pygwalker as pyg
-from models.database import init_db, Issue
+# from models.database import init_db, Issue
 from sqlalchemy.orm import sessionmaker
 
 from langchain.memory import ConversationBufferMemory
@@ -15,10 +15,11 @@ import base64
 from wordfreq_utils import generate_wordcloud
 import matplotlib.pyplot as plt # 图像展示库，以便在notebook中显示图片
 
+
 # 初始化数据库
-engine = init_db()
-Session = sessionmaker(bind=engine)
-session = Session()
+# engine = init_db()
+# Session = sessionmaker(bind=engine)
+# session = Session()
 
 # 页面配置
 st.set_page_config(page_title="AutoDataAnalyzer", layout="wide")
@@ -236,7 +237,7 @@ def analyze_performance():
             except Exception as e:
                 st.error(f"加载文件 {uploaded_file.name} 失败：{e}")
 
-
+'''
 def manage_issues():
     st.header("📝‍ 问题管理")
     # 问题列表
@@ -317,6 +318,7 @@ def generate_reports():
         )
     else:
         st.info("暂无问题记录。")
+'''
 
 def manage_keyissues():
     st.header("📝‍ 重点议题管理平台")
