@@ -1,0 +1,20 @@
+credentials:
+  usernames:
+    admin:
+      email: admin@csvw.com
+      name: Admin User
+      password: "$2b$12$KIXQW1Y1CkQ5O1V3AqQn1uQxV6h9Y4p7Hhtj/UBq2RCef6d8OTeG6"  # 哈希密码
+    alice:
+      email: alice@csvw.com
+      name: Alice
+      password: "$2b$12$EoMghgO0NZZeF6J2qIHTsuXJj.hU6vFq3G3UQm1j6e7ZPOMxFJHqG"
+    bob:
+      email: bob@csvw.com
+      name: Bob
+      password: "$2b$12$ZqXnN4lMk1VY3Z4m9zC1l.OgW6H5EjI6BzJhOqA3L1eF9Tf8XzK0W"
+cookie:
+  expiry_days: 30
+  key: some_signature_key  # 请替换为一个安全的密钥
+  name: some_cookie_name
+preauthorized:
+  emails: []
